@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NTKPL</title>
+    <link rel="icon" href="Images2/Icon/NTKPL.png" type="image/x-icon">
+    <link rel="stylesheet" href="/CSS/style.css" type="text/css" />
+    <script src="/JS/main.js" async></script>
+</head>
+
+<body>
+    <div class="page-container">
+        <div class="header">
+            <div style="cursor: pointer" class="menu">
+                <img src="/Images/list.png" alt="" style="margin-top: 5px;" />
+                <div>
+                    <h4 style="margin: 10px">Danh mục sản phẩm</h4>
+                    <ul id="listCategory">
+                        <!-- listCategory -->
+                    </ul>
+                </div>
+            </div>
+            <div class="search">
+                <input style="padding-left: 10px;" type="text" placeholder="Tìm kiếm sản phẩm..." />
+                <img src="/Images/search.png" height="30px" width="30px" style="padding: 0 0 0 5px" />
+            </div>
+            <div class="user-menu" style="margin-top: 15px" id="btnProfile">
+                <a href="#" class="user-link">
+                    <img src="/Images/user.png" width="30px" height="30px" style="padding: 0 5px 0 0">
+                    <span style="margin-top: 7px">Khách hàng</span>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="#" onclick="openProfile()">Hồ sơ của tôi</a>
+                    <!-- <a href="">Đơn mua</a> -->
+                    <a id="btnDangXuat" href="#">Đăng xuất</a>
+                </div>
+            </div>
+
+            <!-- Hồ sơ của tôi (Popup) -->
+            <div id="profileModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeProfile()">&times;</span>
+                    <h2>Chỉnh sửa hồ sơ của tôi</h2>
+                    <form id="profileForm">
+                        <label for="fullname">Họ và tên:</label>
+                        <input type="text" id="fullname" name="fullname" value="">
+
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" value="">
+
+                        <label for="address">Địa chỉ:</label>
+                        <input type="text" id="address" name="address" value="">
+
+                        <label for="phone">Số điện thoại:</label>
+                        <input type="text" id="phone" name="phone" value="">
+
+                        <label for="gender">Giới tính:</label>
+                        <select id="gender" name="gender">
+                            <option value="male">Nam</option>
+                            <option value="female">Nữ</option>
+                        </select>
+
+                        <button type="button" onclick="saveProfile()">Lưu thay đổi</button>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="user" style="margin-top: 15px" id="btnDangNhap">
+                <a href="/login">Đăng nhập</a>
+            </div>
+
+            <!-- Modal chi tiết sản phẩm -->
+            <div id="productDetailModal" class="modal">
+                <div class="modal-content">
+                    <span class="close" onclick="closeProductDetail()">&times;</span>
+                    <div class="product-detail-container">
+                        <div class="product-info">
+                            <h2 id="modalProductName">Tên sản phẩm</h2>
+                            <img id="modalProductImage" src="" alt="Hình ảnh sản phẩm">
+                            <p><strong>Giá:</strong> <span id="modalProductPrice"></span></p>
+                            <p><strong>Đơn vị:</strong> <span id="modalProductUnit"></span></p>
+                            <p><strong>Xuất xứ:</strong> <span id="modalProductOrigin"></span></p>
+                            <p><strong>Có thể nấu:</strong> <span id="modalProductDescription"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cart" id="btnCart">
+                <button class="cartbtn" id="cartbtn" onclick="display()">
+                    <img src="/Images/basket.png" width="30px" height="30px" style="padding: 0 5px 0 0">
+                    <span style="margin-top: 7px;">Giỏ hàng</span>
+                </button>
+                <div id="basket">
+                    <div id="mini" align="center">
+                        <button onclick="close_m()" id="x">x</button>
+                        <h3>GIỎ HÀNG</h3>
+                        <hr style="height: 3px;">
+                        <div class="header-row">
+                            <span>Sản phẩm</span>
+                            <span>Giá</span>
+                            <span>Số lượng</span>
+                        </div>
+                        <div class="items"></div>
+                        <hr style="height: 3px; margin-bottom: 15px;">
+                        <div style="float: right; width: 260px;">
+                            <b class="total">Tổng cộng:</b>
+                            <span class="total-price" id="totalPrice">0.000 VNĐ</span>
+                        </div>
+                        <div style="margin-top: 45px;">
+                            <button onclick="close_m()" class="basbtn">Đóng</button>
+                            <button class="basbtn ord">Thanh toán</button>
+                        </div>
+                    </div>
+
+                    <!-- Thanh toán -->
+                    <div id="checkoutModal" class="checkout-modal">
+                        <div class="checkout-content">
+                            <h3>Thông tin Thanh toán</h3>
+                            <hr>
+                            <div class="checkout-section">
+                                <h4>Sản phẩm</h4>
+                                <div id="productList"></div>
+                            </div>
+                            <div class="checkout-section">
+                                <h4>Tổng tiền</h4>
+                                <span id="totalAfterDiscount">0.000 VNĐ</span>
+                            </div>
+                            <div class="checkout-buttons">
+                                <button onclick="confirmPayment()">Xác nhận thanh toán</button>
+                                <button onclick="closeCheckout()">Đóng</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="classsp">
+                <div>
+                    <span>NGƯỜI DÙNG HAY MUA</span>
+                </div>
+                <div>
+                    <button style="color: black; cursor: pointer;" id="showAll">Xem tất cả</button>
+                </div>
+            </div>
+            <hr />
+            <br />
+            <!-- show product -->
+        </div>
+
+        <div class="lk" style="margin: 0 15px 0 15px">
+            <h1>Bách hóa NTKPL</h1>
+        </div>
+    </div>
+
+    <script src="/JS/home.js"></script>
+    <script src="/JS/category.js"></script>
+    <script src="js/checkLogin.js"></script>
+</body>
+
+</html>

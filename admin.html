@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ Thống Quản Lý</title>
+    <link rel="stylesheet" href="CSS/admin.css">
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>Hệ Thống Quản Lý</h2>
+        </div>
+        <ul class="menu">
+            <li id="manage-products">Quản lý sản phẩm</li>
+            <li id="manage-orders">Quản lý đơn hàng</li>
+            <li id="manage-customers">Quản lý khách hàng</li>
+            <li id="manage-employees">Quản lý nhân viên</li>
+        </ul>
+        <div class="logout">
+            <h3 id="btnDangXuat">Đăng xuất</h3>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <div class="search-bar">
+                <input type="text" placeholder="Tìm kiếm...">
+                <button>Tìm</button>
+            </div>
+        </div>
+        <!-- QL sản phẩm -->
+        <div id="product-management" class="management-section">
+            <h2>Quản lý sản phẩm</h2>
+            <button id="add-product">Thêm sản phẩm</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Loại sản phẩm</th>
+                        <th>Đơn vị</th>
+                        <th>Nguồn gốc</th>
+                        <th>Giá</th>
+                        <th>Số lượng</th>
+                        <th>Mô tả</th>
+                        <th>Hình ảnh</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody id="product-list">
+                    <!-- Các sản phẩm sẽ được hiển thị ở đây -->
+                </tbody>
+            </table>
+        </div>
+        <!-- QL đơn hàng -->
+        <div id="order-management" class="management-section">
+            <h2>Quản lý đơn hàng</h2>
+            <button id="add-order" style="display: none;">Thêm đơn hàng</button>
+            <!-- Bảng Chi Tiết Đơn Hàng -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID Đơn Hàng</th>
+                        <th>ID Sản Phẩm</th>
+                        <th>Số Lượng</th>
+                        <th>Giá</th>
+                        <th>Tổng Tiền</th>
+                    </tr>
+                </thead>
+                <tbody id="order-details">
+                    <!-- Chi tiết đơn hàng sẽ được hiển thị ở đây -->
+                </tbody>
+            </table>
+
+            <!-- Bảng Đơn Hàng -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID Đơn Hàng</th>
+                        <th>ID Khách Hàng</th>
+                        <th>Tổng Tiền</th>
+                        <th>Ngày Đặt Hàng</th>
+                        <th>Thao Tác</th>
+                    </tr>
+                </thead>
+                <tbody id="order-list">
+                    <!-- Các đơn hàng sẽ được hiển thị ở đây -->
+                </tbody>
+            </table>
+
+        </div>
+        <!-- QL Khach hang -->
+        <div id="customer-management" class="management-section">
+            <h2>Quản lý khách hàng</h2>
+            <button id="add-customer">Thêm khách hàng</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Họ và tên</th>
+                        <th>Email</th>
+                        <th>Địa chỉ</th>
+                        <th>Số điện thoại</th>
+                        <th>Giới tính</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody id="customer-list">
+                    <!-- Các khách hàng sẽ được hiển thị ở đây -->
+                </tbody>
+            </table>
+        </div>
+        <!-- QL Nhan vien -->
+        <div id="employee-management" class="management-section">
+            <h2>Quản lý nhân viên</h2>
+            <button id="add-employee">Thêm nhân viên</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Họ và tên</th>
+                        <th>Email</th>
+                        <th>Địa chỉ</th>
+                        <th>Giới tính</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody id="employee-list">
+                    <!-- Các nhân viên sẽ được hiển thị ở đây -->
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <script src="JS/admin.js"></script>
+    <script src="JS/checkLogin.js"></script>
+</body>
+
+</html>
